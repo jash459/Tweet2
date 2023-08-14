@@ -1,6 +1,6 @@
 import { handleError } from "../error.js";
 import User from "../models/User.js";
-// import Tweet from "../models/Tweet.js";
+import Tweet from "../models/Tweet.js";
 
 export const getUser = async (req, res, next) => {
   try {
