@@ -60,7 +60,7 @@ export const follow = async (req, res, next) => {
       await user.updateOne({
         $push: { followers: req.body.id },
       });
-
+      // the user to be followed is in params
       await currentUser.updateOne({ $push: { following: req.params.id } });
     } else {
       res.status(403).json("you already follow this user");
@@ -77,7 +77,7 @@ export const unFollow = async (req, res, next) => {
     const user = await User.findById(req.params.id);
     //current user
     const currentUser = await User.findById(req.body.id);
-
+    // the user to be unfollowed is in params
     if (currentUser.following.includes(req.params.id)) {
       await user.updateOne({
         $pull: { followers: req.body.id },
